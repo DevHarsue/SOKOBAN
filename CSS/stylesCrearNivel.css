@@ -1,0 +1,59 @@
+
+.jugador{
+	background: #5a5959;
+	background-image: url("../IMG/jugador.png");
+	background-size: contain;
+}
+
+.objeto{
+	width: 4em;
+	height: 4em;
+	transition: transform .4s;
+}
+
+.objeto:hover{
+	transform: scale(1.1);
+}
+
+
+.objetos{
+	margin-top: 2em;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	grid-gap: 0.5em;
+	align-items: center;
+}
+
+.espacio{
+	border: 1px solid #fafafa80;
+	transition: .4s background, .4s border;
+}
+
+.espacio:hover{
+	border: 1px solid #fafafa;
+	background: #fafafa80;
+}
+.seleccionado{
+	transform: scale(1.1);
+	
+}
+
+#nombre-nivel{
+	width: 10em;
+	padding: 0.3em;
+}
+
+.contenedor-botones{
+	display: flex;
+	grid-gap: .1em;
+}
+
+.boton-m{
+	margin-top: 0.2em; 
+	width: 5em;
+	padding: 0.3em;
+	font-size: 1.5em;
+	font-weight: 100;
+}
+

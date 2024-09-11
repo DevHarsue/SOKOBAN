@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+		<link rel="stylesheet" type="text/css" href="CSS/styles.css">	
+		<link rel="stylesheet" type="text/css" href="CSS/stylesJugar.css">
+		<link rel="stylesheet" type="text/css" href="CSS/stylesCrearNivel.css">
+		<title>SOKOBAN by DevHarsue</title>
+	</head>
+	<body>
+		<div class="modal">
+			<div class="modal-caja">
+				<p>Hace Falta un jugador</p>
+				<button class="boton">OK</button>
+			</div>
+		</div>
+		<a href="index.html" class="boton inicio">Inicio</a>
+		<a href="niveles.html" class="boton niveles">Niveles</a>
+		<input type="text" class='boton boton-m' id="nombre-nivel" placeholder="Nombre del Nivel">
+		<div class="contenedor-botones">
+			<button class="boton boton-m" id="btn-guardar">Guardar</button>
+			<button class="boton boton-m" id="btn-cargar">Cargar</button>
+		</div>
+		<div class="objetos">			
+			<div class="jugador objeto" title="jugador"></div>
+			<div class="muro objeto" title="muro"></div>
+			<div class="caja objeto" title="caja"></div>
+			<div class="hueco objeto" title="hueco"></div>
+			<div class="objeto" title="quitar"><img src="IMG/quitar.png" class="objeto" id="quitar"></div>
+		</div>
+		<h1>Sokoban</h1>
+		<div class="contenedor"></div>
+		<h6>DevHarsue</h6>
+		<h6 class="version">V2.0</h6>
+		<script type="text/javascript" src="JS/objetos.js"></script>
+		<script type="text/javascript" src="JS/crearNivelPredeterminado.js"></script>
+		<script type="text/javascript" src="JS/crearNivel.js"></script>
+		<script type="text/javascript" src="JS/guardarNivel.js"></script>
+		<script type="text/javascript" src="JS/cargarNivel.js"></script>
+	</body>
+</html>

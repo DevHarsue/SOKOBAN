@@ -1,0 +1,118 @@
+*{
+	padding: 0;
+	margin: 0;
+	font-family: agency FB;
+}
+
+h1{
+	color: #fafafa;
+	font-size: 3em;
+	text-shadow: 0 0 0.3em #000;
+	margin-top: 0.3em;
+}
+
+h6{
+	color: #a8e;
+	font-size: 1.3em
+}
+
+.version{
+	font-size: 2em;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+}
+
+.boton{
+	outline: none;
+	user-select: none;
+	color: #fafafa;
+	width: 50%;
+	text-align: center;
+	font-size: 2em;
+	font-weight: 700;
+	padding: 1em;
+	background: #00000008;
+	border: 2px solid white;
+	transition: background 0.5s,border-radius 0.5s;
+	border-radius: 2%;
+	text-shadow: 0 0 0.3em #4448;
+
+}
+
+.boton:hover{
+	cursor: pointer;
+	background: #afafaf;
+	border-radius: 8%;
+}
+
+.inicio, .niveles{
+	position: fixed;
+	font-size: 1.1em;
+	text-decoration: none;
+	width: 4em;
+	left: 0;
+	top: 0;
+}
+
+.niveles{
+	left: 6.5em;
+}
+
+.modal{
+	z-index: 100;
+	position: fixed;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background: #00000080;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-caja{
+	width: 40%;
+	background: #bfbfbf80;
+	border: 2px solid #fafafa;
+	border-radius: 8%;
+	height: 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.modal-caja p{
+	color: #fafafa;
+	font-size: 2em;
+	text-align: center;
+}
+
+
+.aparecer{
+	display: flex;
+	animation: aparecer 0.4s linear forwards;
+}
+
+.desaparecer{
+	display: none;
+	animation: desaparecer 0.4s linear forwards;
+}
+
+@keyframes aparecer{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+@keyframes desaparecer{
+	0%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0;
+	}
+}

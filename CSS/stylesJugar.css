@@ -1,0 +1,52 @@
+body{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: radial-gradient(circle,#fff,#bbb);
+}
+
+
+.contenedor{
+	display: grid;
+	grid-template-columns: repeat(10,4em);
+	grid-template-rows: repeat(10,4em);
+	/*width: 100vw;
+	height: 100vh;*/
+	background: #dfdfdf;
+}
+
+#jugador{
+	position: relative;
+	z-index: 10;
+	background: #5a5959;
+	grid-column: 2;
+	grid-row: 2;
+	background-image: url("../IMG/jugador.png");
+	background-size: contain;
+}
+
+.muro{
+	background: #a8524fff;
+}
+
+.caja{
+	position: relative;
+	z-index: 1;
+	background: #bda152;
+	background-image: url("../IMG/caja.png");
+	background-size: contain;
+}
+
+.hueco{
+	position: relative;
+	z-index: 5;
+	background: #11aa4e00
+	;background-image: url("../IMG/hueco.png");
+	background-size: contain;
+}
+
+p{
+	font-size: 1.5em;
+	color: #fafafa;
+}
