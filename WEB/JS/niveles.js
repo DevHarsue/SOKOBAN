@@ -7,7 +7,7 @@ addEventListener('click',e=>{
 	// Exculimos a window y a document para evitar errores
 	let path = e.composedPath().filter(x=>x!=window && x!=document)
 	
-	// Buscamos el en path el objeto qeu tenga la clase btn-nivel (es el div principal)
+	// Buscamos en el path el objeto que tenga la clase btn-nivel (es el div principal)
 	let clickeado =	path.find(obj=>obj.classList.contains('btn-nivel'))
 	
 	// Ahora buscamos el div en el arreglo(para encontrar el objeto como tal)
@@ -15,7 +15,8 @@ addEventListener('click',e=>{
 
 	// Si se encontro un objeto nivel como clickeado
 	if (clickeado) {
-
+		console.log(e.target)
+		// return
 		// Si clickeamos el boton de borrar 
 		if (e.target.classList.contains('borrar')) {
 			// Preguntamos si quiere borrar el nivel
@@ -27,7 +28,7 @@ addEventListener('click',e=>{
 				// Y sobreescribimos los nuevos niveles (sin el borrado)
 				localStorage.setItem('niveles',JSON.stringify(niveles))
 				// Recargamos la pagina
-				window.location.assign('niveles.html')	
+				window.location.assign('editar_niveles.html')	
 			}						
 			return 0
 		}else if(e.target.classList.contains('compartir')){
@@ -44,14 +45,15 @@ addEventListener('click',e=>{
 })
 
 // Si se esta seleccionando los niveles para jugar y no para editar
-const jugar = sessionStorage.getItem('jugar')
+const jugar = !window.location.pathname.includes("editar_niveles.html")
+
 
 // Obtenemos los niveles
 const niveles = JSON.parse(localStorage.getItem('niveles'))
 // Constante donde se almacenaran los objetos Niveles
 const nivelesDiv = []
 
-// Si existen los niveles, creamos los Niveles(div) y los guardamos en el arregklos nivelesDiv
+// Si existen los niveles, creamos los Niveles(div) y los guardamos en el arreglo nivelesDiv
 if (niveles && niveles.length>1) niveles.forEach(nivel => nivel.nombre != 'PREDETERMINADO' ? nivelesDiv.push(new Nivel(nivel.nombre)) : false)
 else if(jugar){
 	alert('No hay niveles creados.')

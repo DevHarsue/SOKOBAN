@@ -104,16 +104,16 @@ class Nivel{
 		this.div.appendChild(p)
 		let opciones = document.createElement('DIV')
 		opciones.classList.add('botones-nivel')
-		let img = document.createElement('IMG')
-		img.src = 'IMG/compartir.png'
-		img.title = 'Compartir'
-		img.classList.add('compartir')
-		opciones.appendChild(img)
-		img = document.createElement('IMG')
-		img.src = 'IMG/borrar.png'
-		img.title = 'Borrar'
-		img.classList.add('borrar')
-		opciones.appendChild(img)
+		let i = document.createElement('I')
+		i.classList.add("fa-solid")
+		i.classList.add("fa-share-nodes")
+		i.classList.add('compartir')
+		opciones.appendChild(i)
+		i = document.createElement('I')
+		i.classList.add("fa-solid")
+		i.classList.add("fa-trash")
+		i.classList.add('borrar')
+		opciones.appendChild(i)
 		this.div.appendChild(opciones)
 		this.nombre = nombre
 	}

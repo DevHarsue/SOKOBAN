@@ -8,17 +8,15 @@ h1{
 	color: #fafafa;
 	font-size: 3em;
 	text-shadow: 0 0 0.3em #000;
-	margin-top: 0.3em;
 }
 
 h6{
-	color: #a8e;
+	color: #fafafa;
 	font-size: 1.3em
 }
 
 .version{
 	font-size: 2em;
-	position: fixed;
 	right: 0;
 	bottom: 0;
 }
@@ -31,8 +29,8 @@ h6{
 	text-align: center;
 	font-size: 2em;
 	font-weight: 700;
-	padding: 1em;
-	background: #00000008;
+	padding: .5em;
+	background: #0000000f;
 	border: 2px solid white;
 	transition: background 0.5s,border-radius 0.5s;
 	border-radius: 2%;
@@ -42,21 +40,23 @@ h6{
 
 .boton:hover{
 	cursor: pointer;
-	background: #afafaf;
-	border-radius: 8%;
+	background: #0000008f;
 }
 
-.inicio, .niveles{
-	position: fixed;
-	font-size: 1.1em;
-	text-decoration: none;
-	width: 4em;
-	left: 0;
-	top: 0;
+
+.inicio{
+	position: absolute;
+	font-size: 1.7em;
+	left: .5em;
+	top: .5em;
+	width: 1.7em;
+	color: #fafafa;
+	text-shadow: 0 0 0.3em #000;
+	text-align: center;
 }
 
 .niveles{
-	left: 6.5em;
+	top: 1.7em
 }
 
 .modal{
@@ -73,9 +73,8 @@ h6{
 
 .modal-caja{
 	width: 40%;
-	background: #bfbfbf80;
+	background: rgb(141 118 52);
 	border: 2px solid #fafafa;
-	border-radius: 8%;
 	height: 30%;
 	display: flex;
 	flex-direction: column;
@@ -89,6 +88,9 @@ h6{
 	text-align: center;
 }
 
+.modal-caja .boton{
+	padding: .2em;
+}
 
 .aparecer{
 	display: flex;
@@ -116,3 +118,4 @@ h6{
 		opacity: 0;
 	}
 }
+

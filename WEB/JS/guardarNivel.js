@@ -72,5 +72,5 @@ btnOK.addEventListener('click',()=>{
 	// Cerramos el modal
 	modal.cerrar(contenedorModal)
 	// Si ya se guardo el nivel redirecciona
-	if (guardado) modal.cerrar(contenedorModal,'niveles.html') 
+	if (guardado) modal.cerrar(contenedorModal,'editar_niveles.html') 
 })

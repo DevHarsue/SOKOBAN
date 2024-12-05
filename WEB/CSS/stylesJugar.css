@@ -3,17 +3,15 @@ body{
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background: radial-gradient(circle,#fff,#bbb);
+	background: rgb(191 156 57);
 }
 
 
 .contenedor{
 	display: grid;
-	grid-template-columns: repeat(10,4em);
-	grid-template-rows: repeat(10,4em);
-	/*width: 100vw;
-	height: 100vh;*/
-	background: #dfdfdf;
+	grid-template-columns: repeat(10,2.5em);
+	grid-template-rows: repeat(10,2.5em);
+	background: #d9ac71;
 }
 
 #jugador{

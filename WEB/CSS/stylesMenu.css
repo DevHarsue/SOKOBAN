@@ -5,7 +5,7 @@
 	height: 100vh;
 	align-items: center;
 	flex-direction: column;
-	background: radial-gradient(circle,#fff,#bbb);
+	background: rgb(191 156 57);
 }
 
 
@@ -14,7 +14,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
-	background: #dfdfdf;
+	background: #ff00001f;
 	border: 2px solid white;
 	width: 40em;
 	height: 40em;
