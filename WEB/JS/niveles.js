@@ -46,7 +46,7 @@ addEventListener('click',e=>{
 
 // Si se esta seleccionando los niveles para jugar y no para editar
 const jugar = !window.location.pathname.includes("editar_niveles.html")
-const url = "https://sokoban-1v5b.onrender.com"
+const url = "https://sokoban-1v5b.onrender.com/"
 const niveles = []
 const nivelesDiv = []
 

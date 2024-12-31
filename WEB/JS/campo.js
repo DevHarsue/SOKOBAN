@@ -33,7 +33,7 @@ nivel = nivel.filter(obj=>obj.type!='Espacio')
 // Generamos los muros barrera
 generador.generar(nivel,campo)
 
-const url = "https://sokoban-1v5b.onrender.com"
+const url = "https://sokoban-1v5b.onrender.com/"
 
 let nombreNivel = ""
 
