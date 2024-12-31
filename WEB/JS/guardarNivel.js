@@ -1,6 +1,6 @@
 'use strict'
 
-const url = "http://localhost:5000/"
+const url = "https://sokoban-1v5b.onrender.com"
 // Al clickar el boton guardar
 const btnGuardar = document.getElementById('btn-guardar')
 btnGuardar.addEventListener('click',()=>{
