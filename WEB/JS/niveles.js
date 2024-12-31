@@ -15,55 +15,67 @@ addEventListener('click',e=>{
 
 	// Si se encontro un objeto nivel como clickeado
 	if (clickeado) {
-		console.log(e.target)
 		// return
 		// Si clickeamos el boton de borrar 
 		if (e.target.classList.contains('borrar')) {
+			alert("MARICO ESTO ESTA SIENDO ACTUALIZADO")
+
 			// Preguntamos si quiere borrar el nivel
-			if (confirm(`Seguro quieres borrar el nivel ${clickeado.nombre}`)) {
-				// Buscamos el nivel (que indice tiene)
-				let indice = niveles.indexOf(niveles.find(nivel=>nivel.nombre==clickeado.nombre))
-				// lo borramos
-				niveles.splice(indice,1)
-				// Y sobreescribimos los nuevos niveles (sin el borrado)
-				localStorage.setItem('niveles',JSON.stringify(niveles))
-				// Recargamos la pagina
-				window.location.assign('editar_niveles.html')	
-			}						
+			// if (confirm(`Seguro quieres borrar el nivel ${clickeado.nombre}`)) {
+			// 	// Buscamos el nivel (que indice tiene)
+			// 	let indice = niveles.indexOf(niveles.find(nivel=>nivel.nombre==clickeado.nombre))
+			// 	// lo borramos
+			// 	niveles.splice(indice,1)
+			// 	// Y sobreescribimos los nuevos niveles (sin el borrado)
+			// 	localStorage.setItem('niveles',JSON.stringify(niveles))
+			// 	// Recargamos la pagina
+			// 	window.location.assign('editar_niveles.html')	
+			// }						
 			return 0
 		}else if(e.target.classList.contains('compartir')){
-			alert(`Copia el siguiente codigo y carga en la opcion de crear nivel:${JSON.stringify(niveles.find(nivel=>nivel.nombre==clickeado.nombre))}`)
+			alert("MARICO ESTO ESTA SIENDO ACTUALIZADO")
+			// alert(`Copia el siguiente codigo y carga en la opcion de crear nivel:${JSON.stringify(niveles.find(nivel=>nivel.nombre==clickeado.nombre))}`)
 			return 0
 		}
-		// Guardamos el nombre del nivel que se selecciono
-		sessionStorage.setItem('nivel',clickeado.nombre)
 		// si estamos jugando lo enviamos a que juegue
-		if (jugar) window.location.assign('jugar.html')
-		// Si no a editar
-		else window.location.assign('crearNivel.html')
+		if (jugar) window.location.assign(`jugar.html?id=${clickeado.id}`)
+		// // Si no a editar
+		else window.location.assign(`crearNivel.html?id=${clickeado.id}`)
 	}
 })
 
 // Si se esta seleccionando los niveles para jugar y no para editar
 const jugar = !window.location.pathname.includes("editar_niveles.html")
-
-
-// Obtenemos los niveles
-const niveles = JSON.parse(localStorage.getItem('niveles'))
-// Constante donde se almacenaran los objetos Niveles
+const url = "https://sokoban-1v5b.onrender.com/"
+const niveles = []
 const nivelesDiv = []
 
-// Si existen los niveles, creamos los Niveles(div) y los guardamos en el arreglo nivelesDiv
-if (niveles && niveles.length>1) niveles.forEach(nivel => nivel.nombre != 'PREDETERMINADO' ? nivelesDiv.push(new Nivel(nivel.nombre)) : false)
-else if(jugar){
-	alert('No hay niveles creados.')
-	window.location.assign('index.html')
+const loadLevels = async ()=>{
+	// Obtenemos los niveles de la API
+	await fetch(url+"levels/").then(response=>{
+		// Si la respuesta fue exitosa
+		if (response.ok) {
+			// Lo convertimos a JSON
+			return response.json()
+		}
+	}).then(response =>{
+		// Lo guardamos en el arreglo
+		niveles.push(...response)
+	})
+	// Si existen los niveles, creamos los Niveles(div) y los guardamos en el arreglo nivelesDiv
+	if (niveles && niveles.length>0) niveles.forEach(nivel => nivel.name != 'PREDETERMINADO' ? nivelesDiv.push(new Nivel(nivel.name,nivel.id)) : false)
+	else if(jugar){
+		alert('No hay niveles creados.')
+		window.location.assign('index.html')
+	}
+
+	// Declaramos un generado de niveles (mete divs en un contenedor)
+	const generador = new GeneradorNivel()
+	// Generamos los botones de cada nivel
+	generador.generar(nivelesDiv,document.getElementById('contenedor-niveles'))
+
 }
 
-// Declaramos un generado de niveles (mete divs en un contenedor)
-const generador = new GeneradorNivel()
-// Generamos los botones de cada nivel
-generador.generar(nivelesDiv,document.getElementById('contenedor-niveles'))
 
 if (jugar) {
 	// Quitamos el boton de crear niveles

@@ -1,5 +1,6 @@
 'use strict'
 
+const url = "https://sokoban-1v5b.onrender.com/"
 // Al clickar el boton guardar
 const btnGuardar = document.getElementById('btn-guardar')
 btnGuardar.addEventListener('click',()=>{
@@ -16,9 +17,9 @@ btnGuardar.addEventListener('click',()=>{
 	let cHuecos = nivel.filter(obj => obj.type == 'Hueco').length
 	let cCajas = nivel.filter(obj=>obj.type == 'Caja').length
 
-	// Si existe un nivel con el mismo nombre(a menos que se este editando) o el nombre esta vacio
-	if (niveles.find(nivel => nivel.nombre ==nombre && nivel.nombre !== nombreNivel) || nombre == '') {
-		modal.abrir(contenedorModal,'El nombre no es valido o existe otro nivel con el mismo nombre.')
+	// Si el nombre es menor 
+	if (nombre.length < 3 ) {
+		modal.abrir(contenedorModal,'El nombre no es valido, debe tener minimo 3 caracteres')
 		return 0
 	}
 	// Si no hay un jugador o hay mas de uno
@@ -47,15 +48,37 @@ btnGuardar.addEventListener('click',()=>{
 		niveles.splice(indice,1,{nombre,nivel})		
 
 	}
-	// Si es un nivel nuevo se mete sin mas
-	else niveles.push({nombre,nivel})
 
-	// abrimos el modal diciendo que el nivel se guardo
-	modal.abrir(contenedorModal,'Nivel Guardado')
-	// Decimos que ya se guardo el nivel
-	guardado = true
-	// Guardamos los niveles en el almacenamiento local
-	localStorage.setItem('niveles',JSON.stringify(niveles))
+	console.log({
+		name: input.value.toUpperCase(),
+		user_id: 1,
+		message: "Mensaje Predeterminado",
+		structure: nivel
+	})
+	fetch(url+"levels",{
+		method: 'POST',
+		body: JSON.stringify({
+			name: input.value.toUpperCase(),
+			user_id: 1,
+			message: "Mensaje Predeterminado",
+			structure: nivel
+		}),
+		headers: {
+			'Content-Type': 'application/json'
+			}
+		}).then(response=>{
+			if (response.status==201){
+				return response.json()
+			}else{
+				modal.abrir(contenedorModal,'Error al guardar el nivel, ¿Porque?, No se')
+			}
+		}).then(r=>{
+			// abrimos el modal diciendo que el nivel se guardo
+			modal.abrir(contenedorModal,'Nivel Guardado')
+			// Decimos que ya se guardo el nivel
+			guardado = true
+		})
+	
 
 })
 
@@ -72,5 +95,5 @@ btnOK.addEventListener('click',()=>{
 	// Cerramos el modal
 	modal.cerrar(contenedorModal)
 	// Si ya se guardo el nivel redirecciona
-	if (guardado) modal.cerrar(contenedorModal,'editar_niveles.html') 
+	if (guardado) modal.cerrar(contenedorModal,'niveles.html') 
 })

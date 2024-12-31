@@ -27,26 +27,11 @@ const generarPredeterminado = ()=>{
 }
 
 
-let predeterminado = []
+let predeterminado = generarPredeterminado()
 
-// Si nunca ha sido agregado el nivel 'predeterminado' lo agregamos
-if (!localStorage.getItem('niveles')) {
-	// Lo generamos
-	predeterminado = generarPredeterminado()
-	// Lo tranformamos a objeto JSON
-	predeterminado = {nombre:'PREDETERMINADO',nivel:predeterminado}
-	// Le quitamos la propiedad div
-	predeterminado.nivel.forEach(obj=>obj.div ? delete obj.div : false)
-	// Lo guardamos como string
-	localStorage.setItem('niveles',JSON.stringify([predeterminado]))	
-}else{ // si ya se ha agregado el nivel antes
-	// Lo solicitamos
-	predeterminado = JSON.parse(localStorage.getItem('niveles')).find(nivel=>nivel.nombre=='PREDETERMINADO')
-
-}
 
 // Recreamos el nivel predeterminado
-let nivelPredeterminado = recreador.recrear(predeterminado.nivel,tipos)
+let nivelPredeterminado = recreador.recrear(predeterminado,tipos)
 // Generar los bordes y los espacios
 generador.generar(nivelPredeterminado,campo)
 
