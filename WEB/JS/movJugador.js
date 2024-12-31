@@ -1,13 +1,14 @@
 'use strict';
 
-const jugador = nivel.find(obj=>obj.type=='Jugador')
-
 addEventListener('keydown',e=>{
+	const jugador = nivel.find(obj=>obj.type=='Jugador')
+
 	let x,y;
 
 	if(e.key == 'R' || e.key == 'r') {
-		sessionStorage.setItem('nivel',nombreNivel)
-		window.location.assign('jugar.html')
+		const valores = new URLSearchParams(window.location.search)
+    	let id = valores.get('id')
+		window.location.assign('jugar.html?id='+id)
 	}
 
 	x = (e.key == keyIzquierda) ? parseInt(jugador.x)-1 : (e.key == keyDerecha) ? parseInt(jugador.x)+1 : jugador.x;

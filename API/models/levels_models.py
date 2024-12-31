@@ -13,7 +13,7 @@ class Object(BaseModel):
     
     @validator("type")
     def validate_type(cls,value):
-        if value not in ["Jugador","Hueco","Caja"]:
+        if value not in ["Jugador","Hueco","Caja","Muro"]:
             raise ValueError("Invalid type")
         return value
 

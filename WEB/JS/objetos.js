@@ -96,9 +96,11 @@ class Jugador extends CuboMov{
 
 
 class Nivel{
-	constructor(nombre){
+	constructor(nombre,id){
 		this.div = document.createElement('DIV')
 		this.div.classList.add('boton','btn-nivel')
+		this.div.setAttribute("level_id",id)
+		this.id = id
 		let p = document.createElement('P')
 		p.textContent = nombre
 		this.div.appendChild(p)
