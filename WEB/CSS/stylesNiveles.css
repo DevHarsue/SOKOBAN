@@ -62,6 +62,10 @@ body{
 	opacity: 1;
 }
 
+.botones-nivel[show-i=false]{
+	opacity: 0;
+}
+
 .botones-nivel i{
 	position: relative;
 	width: 1em;

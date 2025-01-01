@@ -13,6 +13,12 @@ class Modal{
 		modal.classList.add('desaparecer')
 		if (direccion) window.location.assign(direccion)
 	}
+	quitarBoton(modal){
+		modal.querySelector(".boton").hidden = true
+	}
+	agregarBoton(modal){
+		modal.querySelector(".boton").hidden = false
+	}
 }
 
 class GeneradorNivel{
@@ -96,14 +102,16 @@ class Jugador extends CuboMov{
 
 
 class Nivel{
-	constructor(nombre,id){
+	constructor(nombre,id,show_i=true){
 		this.div = document.createElement('DIV')
 		this.div.classList.add('boton','btn-nivel')
 		this.div.setAttribute("level_id",id)
 		this.id = id
+		this.nombre = nombre
 		let p = document.createElement('P')
 		p.textContent = nombre
 		this.div.appendChild(p)
+		
 		let opciones = document.createElement('DIV')
 		opciones.classList.add('botones-nivel')
 		let i = document.createElement('I')
@@ -117,7 +125,10 @@ class Nivel{
 		i.classList.add('borrar')
 		opciones.appendChild(i)
 		this.div.appendChild(opciones)
-		this.nombre = nombre
+
+		if (!show_i){
+			opciones.setAttribute("show-i",false)
+		}
 	}
 }
 
