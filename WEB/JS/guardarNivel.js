@@ -1,11 +1,9 @@
 'use strict'
 
-const url = "https://sokoban-1v5b.onrender.com/"
 // Al clickar el boton guardar
 const btnGuardar = document.getElementById('btn-guardar')
 btnGuardar.addEventListener('click',()=>{
 	if (guardando){
-		console.log("hola")
 		return 0
 	}
 	guardando = true
@@ -19,17 +17,17 @@ btnGuardar.addEventListener('click',()=>{
 	let niveles = JSON.parse(localStorage.getItem('niveles'))
 
 	// cantidad de huecos y cajas
-	let cHuecos = nivel.filter(obj => obj.type == 'Hueco').length
-	let cCajas = nivel.filter(obj=>obj.type == 'Caja').length
+	let cHuecos = structure.filter(obj => obj.type == 'Hueco').length
+	let cCajas = structure.filter(obj=>obj.type == 'Caja').length
 
 	// Si el nombre es menor 
-	if (nombre.length < 3 ) {
+	if (nombre.length < 3) {
 		modal.abrir(contenedorModal,'El nombre no es valido, debe tener minimo 3 caracteres')
 		guardando = false
 		return 0
 	}
 	// Si no hay un jugador o hay mas de uno
-	else if(nivel.filter(obj => obj.type == 'Jugador').length != 1){
+	else if(structure.filter(obj => obj.type == 'Jugador').length != 1){
 		modal.abrir(contenedorModal,'Debe haber un Jugador.')
 		guardando = false
 		return 0
@@ -48,7 +46,7 @@ btnGuardar.addEventListener('click',()=>{
 	}
 
 	// Eliminamos la propiedad div de cada obj del nivel
-	nivel.forEach(obj=>obj.div ? delete obj.div : false)
+	structure.forEach(obj=>obj.div ? delete obj.div : false)
 
 	// Si se esta editando el nivel
 	if (nombreNivel) {
@@ -58,37 +56,45 @@ btnGuardar.addEventListener('click',()=>{
 
 	}
 	
-	modal.abrir(contenedorModal,'GUARDANDO')
+	let actualizar = nombreNivel!="" ? true : false 
+
+	modal.abrir(contenedorModal,actualizar ? "ACTUALIZANDO"  : 'GUARDANDO')
 	modal.quitarBoton(contenedorModal)
 	mostrarBarra(contenedorModal.querySelector(".modal-caja"))
-	
-	fetch(url+"levels",{
-		method: 'POST',
-		body: JSON.stringify({
-			name: input.value.toUpperCase(),
-			user_id: 1,
-			message: "Mensaje Predeterminado",
-			structure: nivel
-		}),
-		headers: {
-			'Content-Type': 'application/json'
-			}
+	fetch(url+"levels"+(actualizar ? `/?id=${id}`: ""),{
+			method: !actualizar ? 'POST' : 'PUT',
+			body: JSON.stringify({
+				name: input.value.toUpperCase(),
+				user_id: 1,
+				message: "Mensaje Predeterminado",
+				structure: structure
+			}),
+			headers: {
+				'Content-Type': 'application/json'
+				}
 		}).then(response=>{
-			if (response.status==201){
+			if (response.status==201 || response.status==200){
 				return response.json()
 			}else{
-				modal.abrir(contenedorModal,'Error al guardar el nivel, ¿Porque?, No se')
+				throw response
 			}
 		}).then(r=>{
 			modal.agregarBoton(contenedorModal)
 			quitarBarra(contenedorModal.querySelector(".modal-caja"))
 			modal.cerrar(contenedorModal)
 			// abrimos el modal diciendo que el nivel se guardo
-			modal.abrir(contenedorModal,'Nivel Guardado')
+			modal.abrir(contenedorModal,'Nivel ' + (actualizar? 'Actualizado' : 'Guardado'))
 			// Decimos que ya se guardo el nivel
 			guardando = false
 			guardado = true
-		})
+		}).catch(reject=>{
+			modal.agregarBoton(contenedorModal)
+			quitarBarra(contenedorModal.querySelector(".modal-caja"))
+			modal.cerrar(contenedorModal)
+			modal.abrir(contenedorModal,'Error al guardar/actualizar el nivel, ¿Porque?, No se')
+			return reject.json()
+
+		}).then(r=>console.log(r))
 	
 
 })
@@ -108,7 +114,7 @@ btnOK.addEventListener('click',()=>{
 	// Cerramos el modal
 	modal.cerrar(contenedorModal)
 	// Si ya se guardo el nivel redirecciona
-	if (guardado) modal.cerrar(contenedorModal,'niveles.html') 
+	if (guardado) modal.cerrar(contenedorModal,'editar_niveles.html') 
 })
 
 

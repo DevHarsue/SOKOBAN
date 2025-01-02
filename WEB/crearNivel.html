@@ -10,7 +10,7 @@
 		<script src="https://kit.fontawesome.com/aed2f6a74a.js" crossorigin="anonymous"></script>
 		<title>SOKOBAN by DevHarsue</title>
 	</head>
-	<body>
+	<body onload="comprobarEdicion()">
 		<div class="modal">
 			<div class="modal-caja">
 				<p>Hace Falta un jugador</p>
@@ -21,8 +21,7 @@
 		<a href="editar_niveles.html" class="inicio niveles"><i class="fa-solid fa-ellipsis"></i></a>
 		<input type="text" class='boton boton-m' id="nombre-nivel" placeholder="Nombre del Nivel">
 		<div class="contenedor-botones">
-			<button class="boton boton-m" id="btn-guardar">Guardar</button>
-			<button class="boton boton-m" id="btn-cargar">Cargar</button>
+			<button class="boton boton-m" id="btn-guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
 		</div>
 		<div class="objetos">			
 			<div class="jugador objeto" title="jugador"></div>
@@ -37,9 +36,9 @@
 		<h6 class="version">V2.2</h6>
 		<script type="text/javascript" src="JS/objetos.js"></script>
 		<script type="text/javascript" src="JS/barraCarga.js"></script>
-		<script type="text/javascript" src="JS/crearNivelPredeterminado.js"></script>
+		<script type="text/javascript" src="JS/campo.js"></script>
 		<script type="text/javascript" src="JS/crearNivel.js"></script>
 		<script type="text/javascript" src="JS/guardarNivel.js"></script>
-		<script type="text/javascript" src="JS/cargarNivel.js"></script>
+		<script type="text/javascript" src="JS/comprobarNivel.js"></script>
 	</body>
 </html>

@@ -1,42 +1,5 @@
 'use strict';
 
-// Seleccionamos el campo
-const campo = document.querySelector('.contenedor');
-
-// Funcion para generar los muros barreras, y los espacio
-const generarPredeterminado = ()=>{
-	let arr = []
-	// Crear los muros
-	arr.push(new Muro('1','1/11'))
-	arr.push(new Muro('10','1/11'))
-	arr.push(new Muro('2/10','1'))
-	arr.push(new Muro('2/10','10'))
-
-	// Crear los espacios
-	for(let i = 2; i < 10; i++){
-		for(let j = 2; j < 10;j++){
-			let espacio = new Espacio(i,j)
-			arr.push(espacio)
-		}
-	}
-	return arr
-}
-
-// instaciamos los objetos necesarios para para recrear un nivel y generarlo
-const recreador = new RecreadorObjetos()
-const generador = new GeneradorNivel()
-
-// recreamos el nivel predeterminado
-let nivel = recreador.recrear(generarPredeterminado(),tipos)
-// ahora quitamos los espacios para solo generar los muros
-nivel = nivel.filter(obj=>obj.type!='Espacio')
-// Generamos los muros barrera
-generador.generar(nivel,campo)
-
-const url = "https://sokoban-1v5b.onrender.com/"
-
-let nombreNivel = ""
-
 const loadLevel = async ()=>{
 	// Buscamos el nivel que fue seleccionado 
 	const valores = new URLSearchParams(window.location.search)
@@ -60,3 +23,41 @@ const loadLevel = async ()=>{
 
 	})
 }
+
+// Funcion para generar los muros barreras, y los espacio
+const generarPredeterminado = ()=>{
+	let arr = []
+	// Crear los muros
+	arr.push(new Muro('1','1/11'))
+	arr.push(new Muro('10','1/11'))
+	arr.push(new Muro('2/10','1'))
+	arr.push(new Muro('2/10','10'))
+
+	// Crear los espacios
+	for(let i = 2; i < 10; i++){
+		for(let j = 2; j < 10;j++){
+			let espacio = new Espacio(i,j)
+			arr.push(espacio)
+		}
+	}
+	return arr
+}
+
+
+// Seleccionamos el campo
+const campo = document.querySelector('.contenedor');
+
+// instaciamos los objetos necesarios para para recrear un nivel y generarlo
+const recreador = new RecreadorObjetos()
+const generador = new GeneradorNivel()
+
+let nivelPredeterminado = generarPredeterminado()
+
+// recreamos el nivel predeterminado
+let nivel = recreador.recrear(nivelPredeterminado,tipos)
+// Generamos los muros barrera
+generador.generar(nivel,campo)
+
+const url = "https://sokoban-1v5b.onrender.com/"
+
+let nombreNivel = ""

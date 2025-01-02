@@ -19,20 +19,20 @@ addEventListener('click',e=>{
 		// Si no es un espacio el que se clickeo
 		if (objetoClickeado.type!='Espacio'){
 			// Reemplazamos en el nivel el nuevo objeto
-			nivel.splice(nivel.indexOf(objetoClickeado),1,objeto)
+			structure.splice(nivel.indexOf(objetoClickeado),1,objeto)
 		}else{ // Si se esta clickando un espacio
 			// Agregamos al nivel el objeto
-			nivel.push(objeto)			
+			structure.push(objeto)			
 		}
 
 		// Reemplazamos en el nivel lo clickeeado por lo nuevo
 		campo.replaceChild(objeto.div,clickeado)
 	}else if(!clase){ // Si no esta seleccionado ningun boton o el boton de borrar se clickeo
 		// buscamos el objeto que se clickeo (solo objeto no espacio)
-		let objeto = nivel.find(obj=>obj.div==clickeado)
+		let objeto = structure.find(obj=>obj.div==clickeado)
 		if (objeto) {
 			// lo borramos del nivel
-			nivel.splice(nivel.indexOf(objeto),1)
+			structure.splice(structure.indexOf(objeto),1)
 			// buscamos el espacio que estaba por defecto
 			let espacio = nivelPredeterminado.find(esp => esp.x == objeto.x && esp.y == objeto.y)
 			// Y lo reemplazamos por el objeto
@@ -69,5 +69,5 @@ addEventListener('click',e=>{
 let clase = false
 // Variable para saber que boton de objeto se ha seleccionado
 let btnSeleccionado = null
-// En este arreglo vamos a guardar las cosas que vayamos creando
-const nivel = nivelGuardado || []
+
+let structure = []

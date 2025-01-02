@@ -44,6 +44,11 @@
 	padding: 0.3em;
 }
 
+#nombre-nivel:disabled{
+	background-color: #0000000f;
+	cursor: auto;
+}
+
 #nombre-nivel::placeholder{
 	color: #fafafabb;
 }
