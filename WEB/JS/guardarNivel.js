@@ -13,9 +13,6 @@ btnGuardar.addEventListener('click',()=>{
 	// asi que el nombre no va a cambiar
 	let nombre = !nombreNivel ? input.value.toUpperCase() : nombreNivel
 
-	// obtenemos todos los niveles guardados
-	let niveles = JSON.parse(localStorage.getItem('niveles'))
-
 	// cantidad de huecos y cajas
 	let cHuecos = structure.filter(obj => obj.type == 'Hueco').length
 	let cCajas = structure.filter(obj=>obj.type == 'Caja').length
@@ -47,14 +44,6 @@ btnGuardar.addEventListener('click',()=>{
 
 	// Eliminamos la propiedad div de cada obj del nivel
 	structure.forEach(obj=>obj.div ? delete obj.div : false)
-
-	// Si se esta editando el nivel
-	if (nombreNivel) {
-		// Reemplazamos el nivel por el editado
-		let indice = niveles.indexOf(niveles.find(nivel => nivel.nombre==nombreNivel))
-		niveles.splice(indice,1,{nombre,nivel})		
-
-	}
 	
 	let actualizar = nombreNivel!="" ? true : false 
 
