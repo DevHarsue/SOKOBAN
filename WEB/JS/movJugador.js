@@ -1,5 +1,20 @@
 'use strict';
 
+document.getElementById("t-up").addEventListener("click",()=>teclear(keyArriba))
+document.getElementById("t-down").addEventListener("click",()=>teclear(keyAbajo))
+document.getElementById("t-left").addEventListener("click",()=>teclear(keyIzquierda))
+document.getElementById("t-right").addEventListener("click",()=>teclear(keyDerecha))
+
+const teclear = tecla=>{
+    // Crear un evento de teclado
+    const eventoKeydown = new KeyboardEvent('keydown', {
+        key: tecla
+    });
+
+    dispatchEvent(eventoKeydown);
+}
+
+
 addEventListener('keydown',e=>{
 	const jugador = nivel.find(obj=>obj.type=='Jugador')
 

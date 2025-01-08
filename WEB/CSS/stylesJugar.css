@@ -9,8 +9,8 @@ body{
 
 .contenedor{
 	display: grid;
-	grid-template-columns: repeat(10,2.5em);
-	grid-template-rows: repeat(10,2.5em);
+	grid-template-columns: repeat(10,2.8em);
+	grid-template-rows: repeat(10,2.8em);
 	background: #d9ac71;
 }
 
@@ -47,4 +47,61 @@ body{
 p{
 	font-size: 1.5em;
 	color: #fafafa;
+}
+.contenedor-teclas{
+	display: none;
+}
+
+@media (max-width: 600px){
+	body{
+		width: 100vw;
+		height: 100vh;
+	}
+	.contenedor{
+		grid-template-columns: repeat(10,2.5em);
+		grid-template-rows: repeat(10,2.5em);
+	}
+
+	.contenedor-teclas{
+		display: grid;
+		grid-template-columns: repeat(3,1fr);
+		grid-template-rows: repeat(3,1fr);
+		position: absolute;
+		align-items: center;
+		justify-items: center;
+		width: fit-content;
+		height: fit-content;
+		bottom: 2em;
+	}
+
+	.tecla{
+		z-index: 100;
+	}
+	.tecla:active{
+		filter: contrast(2);
+	}
+
+	.tecla:nth-child(1){
+		grid-column: 2;
+	}
+	.tecla:nth-child(2){
+		grid-column: 2;
+		grid-row: 3;
+	}
+	.tecla:nth-child(3){
+		grid-column: 1;
+		grid-row: 2;
+	}
+	.tecla:nth-child(4){
+		grid-column: 3;
+		grid-row: 2;
+	}
+
+} 
+
+@media (max-width: 375px){
+	.contenedor{
+		grid-template-columns: repeat(10,2em);
+		grid-template-rows: repeat(10,2em);
+	}
 }

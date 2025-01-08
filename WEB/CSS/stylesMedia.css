@@ -1,0 +1,24 @@
+
+@media (max-width: 600px) {
+	body{
+		width: 100vw;
+	}
+	.principal-contenedor{
+		width: 100%;
+
+	}
+	.contenedor{
+		width: 20em;
+	}
+	.btn-nivel{
+		width: inherit;
+	}
+
+}
+
+
+@media (max-width: 320px){
+	.contenedor{
+		width: 15em;
+	}
+}
