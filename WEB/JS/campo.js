@@ -55,6 +55,8 @@ let nivelPredeterminado = generarPredeterminado()
 
 // recreamos el nivel predeterminado
 let nivel = recreador.recrear(nivelPredeterminado,tipos)
+
+nivelPredeterminado = nivel
 // Generamos los muros barrera
 generador.generar(nivel,campo)
 
